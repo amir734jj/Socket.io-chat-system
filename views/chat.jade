@@ -1,0 +1,44 @@
+extends ./layout.jade
+
+block head
+    script(src="../socket.io/socket.io.js")
+    script(src="../bower_components/adapterjs/publish/adapter.min.js")
+    script(src="https://simplewebrtc.com/latest-v2.js")
+    script(src="../static/js/script.js")
+
+block content
+    h3 Discussion name (channel) is: #{discussion.discussionName}
+
+    div#discussion
+
+    hr
+
+
+    //- input#startButton.btn.btn-success(tupe='button', value='Join')
+    //-                 
+    //- 
+    //- img#remoteimg.img-responsive(src='../static/remote.png')
+    //- video#remoteVideo(autoplay='', width='100%')
+    //- 
+    //- img#localimg.img-responsive(src='../static/local.png')
+    //- video#localVideo(autoplay='', muted='', width='100%')
+    //- 
+
+    video#localVideo
+    #remoteVideos
+
+
+    hr
+
+    form(role='form')
+        .form-group
+            label(for='comment') Message:
+
+            textarea#comment.form-control(name='message', rows='5')
+            button.btn.btn-default(type='submit') Submit
+
+
+    script.
+        userHashcode="#{user.hashcode}";
+        discussionHashcode="#{discussion.discussionHashcode}"
+        userName="#{user.firstName}" 

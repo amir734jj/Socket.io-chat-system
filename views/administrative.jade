@@ -1,0 +1,65 @@
+extends ./layout.jade
+
+block content
+    .container
+        h3(style="color: green;") Manage User Accounts:
+        table.table.table-bordered
+            thead
+                tr
+                    th Firstname
+                    th Lastname
+                    th(class="hidden-xs") Email
+                    th(class="hidden-xs") Active
+                    th(class="hidden-xs") Admin
+                    th Action
+            tbody
+                - each user in users
+                    tr
+                        td=	user.firstName
+                        td=	user.lastName
+                        td(class="hidden-xs")= user.email
+                        td(class="hidden-xs")
+                            | #{user.active ? "True" : "False"}
+                        td(class="hidden-xs")
+                            | #{user.admin ? "True" : "False"}
+                        td
+                            .dropdown
+                                button(class="btn btn-primary dropdown-toggle", type="button", data-toggle="dropdown")
+                                    | Action &nbsp
+                                    span(class="caret")
+                                ul.dropdown-menu
+                                    li
+                                        a(href="administrative/accounts/#{user.hashcode}/activate")
+                                            | Activate
+                                    li
+                                        a(href="administrative/accounts/#{user.hashcode}/inactivate")
+                                            | Inactivate
+                                    li
+                                        a(href="administrative/accounts/#{user.hashcode}/user")
+                                            | Set as user
+                                    li
+                                        a(href="administrative/accounts/#{user.hashcode}/administrator")
+                                            | Set as administrator
+
+        hr
+
+        h3(style="color: green;") Discussions list:
+
+        table.table.table-bordered
+            thead
+                tr
+                    th Discussion name
+                    th Creator
+                    th Privacy
+                    th Age
+                    th Delete
+            tbody
+                - each discussion in discussions
+                    tr
+                        td=	discussion.discussionName
+                        td=	discussion.discussionCreatorName
+                        td= discussion.discussionPrivacy ? "Private" : "Public"
+                        td= moment.duration(discussion.discussionSince).asDays()
+                        td
+                            a.btn.btn-danger(href="administrative/discussions/#{discussion.discussionHashcode}/delete")
+                                | Delete

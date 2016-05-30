@@ -1,0 +1,46 @@
+extends ./layout.jade
+
+block content
+    .container
+        h2(style="color: green;") Account information:
+
+        form(role="form", action="/account/updateAccount", method="post", required, enctype="multipart/form-data")
+            .col-md-8
+                div.form-group
+                    label First Name:
+                    input.form-control(type="text", placeholder="Enter First Name", name="firstName", autofocus="", value="#{user.firstName}", required, pattern="[A-Za-z]*", title="Alphabetic characters only")
+                div.form-group
+                    label Last Name:
+                    input.form-control(type="text", placeholder="Enter Last Name", name="lastName", autofocus="", value="#{user.lastName}", required, pattern="[A-Za-z]*", title="Alphabetic characters only")
+                div.form-group
+                    label Email:
+                    input.form-control(type="email", placeholder="Enter Email", name="email", autofocus="", value="#{user.email}", required, pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$", title="Please enter a valid email address", disabled)
+                div.form-group
+                    label Password:
+                    input.form-control(type="password", placeholder="Enter Password", name="password", required, pattern="[A-Za-z0-9!@#$%^&*-].{8,}", title="Must contain at least one number, one uppercase letter, one lowercase letter, between least 8 to 16 characters long and at least one special character ! @ # $ % ^ & * -", value="#{user.password}")
+                div.form-group
+                    label Member since:
+                        | #{moment(user.memberSince).format('MMM Do YYYY')}
+
+                div.form-group
+                    label Bio (140 characters):
+                    textarea.form-control(maxlength="140", name="profileBiography", placeholder="Biography")
+                        | #{user.profileBiography}
+                div.btn-group
+                    button.btn.btn-primary(type="submit", autofocus) Update profile
+
+            .col-md-4.hidden-sm
+                - if (user.profileImage)
+                    img(src="account/#{user.profileImage}", class="img-rounded", width="304", height="236")
+                - else
+                    canvas(data-jdenticon-hash="#{user.hashcode}", class="img-rounded", width="304", height="236")
+
+                hr
+
+            .btn-group-vertical
+                button.btn.btn-default
+                    input(type="file", accept="image/*", name="image")
+                    span.fileinput-filename
+                - if (user.profileImage)
+                    a(class="btn btn-danger", href="account/#{user.profileImage}/delete")
+                        | Delete Image

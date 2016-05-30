@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Chat Server</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Chat System</h1>
+
+            <div id=discussion>
+                <h3>Discussion:</h3>
+            </div>
+
+            <form role="form">
+                <div class="form-group">
+                    <label for="comment">Message:</label>
+
+                    <!--<div class="fileinput fileinput-new" data-provides="fileinput">
+                        <span class="btn btn-default btn-file"><span>Choose file</span><input type="file" multiple /></span>
+                        <span class="fileinput-filename"></span><span class="fileinput-new">No file chosen</span>
+                    </div>-->
+
+                    <input type="file" name="files[]" multiple="multiple">
+
+                    <textarea name="message" class="form-control" rows="5" id="comment"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+			var socket = io.connect();
+
+            $("form").on("submit", function(event) {
+               event.preventDefault();
+                socket.emit("send message", $("form textarea").val());
+
+
+
+
+
+
+
+
+
+
+                $("form textarea").val("");
+            });
+
+            socket.on("new message", function(data){
+               $("#discussion").append("<h4>"+data.message+"<h4>");
+            });
+		});
+    </script>
+
+
+</body>
+
+</html>

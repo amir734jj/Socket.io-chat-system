@@ -1,0 +1,47 @@
+extends ./layout.jade
+
+block content
+    .container
+        h2(style="color: green;") Create a discussion:
+
+        form(role="form", action="/discussion/createDiscussion", method="post", required)
+            div.form-group
+                label Discussion Name:
+                input.form-control(type="text", placeholder="Enter discussion name", name="discussionName", autofocus="", required, pattern="[A-Za-z0-9 ]*", title="Alphabetic or numeric characters only")
+            div.form-group
+                .radio
+                    label
+                        input(type="radio", name="privacy", value="public", required)
+                        | Public
+                .radio
+                    label
+                        input(type="radio", name="privacy", value="private", required)
+                        | Private
+            div.btn-group
+                button.btn.btn-primary(type="submit", autofocus) Create discussion
+
+        hr
+
+        h2(style="color: green;") Discussions list:
+
+        table.table.table-bordered
+            thead
+                tr
+                    th Discussion name
+                    th Creator
+                    th Privacy
+                    th Age (in days)
+                    th Access link
+            tbody
+                - each discussion in discussions
+                    tr
+                        td=	discussion.discussionName
+                        td=	discussion.discussionCreatorName
+                        td= discussion.discussionPrivacy ? "Private" : "Public"
+                        td= moment.duration(discussion.discussionSince).asDays()
+                        td
+                            - if (!discussion.discussionPrivacy || discussion.discussionCreator == user.hashcode)
+                                a.btn.btn-success(href="/discussions/#{discussion.discussionHashcode}")
+                                    | Join discussion
+                            - else
+                                label Private

@@ -1,0 +1,21 @@
+extends ./layout.jade
+
+block content
+    .container
+        h2(style="color: green;") Please Login:
+        if(unauthorized)
+            div.alert.alert-danger #{message}
+        form(role="form", action="/login", method="post", required)
+            div.form-group
+                label Email:
+                input.form-control(type="email", placeholder="Enter Email", name="email", required, pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$", title="Please enter a valid email address")
+            div.form-group
+                label Password:
+                input.form-control(type="password", placeholder="Enter Password", name="password", required)
+            div.form-group
+                div.checkbox
+                    label
+                        input(type="checkbox", name="remember")
+                        | Remember me
+            div.btn-group
+                button.btn.btn-primary(type="submit", autofocus) Login

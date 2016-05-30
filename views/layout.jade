@@ -1,0 +1,63 @@
+doctype html
+html(lang="en")
+    head
+        title= "Chat System"
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+        link(rel="stylesheet", href="../static/css/style.css")
+
+        script(src="../bower_components/jquery/dist/jquery.js")
+        script(src="../bower_components/bootstrap/dist/js/bootstrap.min.js")
+        script(src="../bower_components/Jdenticon/dist/jdenticon.min.js")
+
+        link(rel="stylesheet", href="../bower_components/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet", href="../bower_components/font-awesome/css/font-awesome.min.css")
+
+        block head
+    body
+        nav.navbar.navbar-default
+            .container-fluid
+                .navbar-header
+                    button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navigationbar")
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href="/")
+                        span.fa.fa-cubes
+                        | &nbsp Chat System
+                .collapse.navbar-collapse(id="navigationbar")
+                    ul.nav.navbar-nav.navbar-left
+                        - if (user)
+                            li
+                                a(href="/about")
+                                    i(class="fa fa-diamond")
+                                    | &nbsp About
+
+                    ul.nav.navbar-nav.navbar-right
+                        - if (user && user.admin)
+                            li
+                                a(href="/administrative")
+                                    i(class="fa fa-sign-out")
+                                    | &nbsp Administrative
+                        - if (user)
+                            li
+                                a(href="/account")
+                                    i(class="fa fa-cog")
+                                    | &nbsp Account
+                            li
+                                a(href="/logout")
+                                    i(class="fa fa-sign-out")
+                                    | &nbsp Logout
+                        - else
+                            li
+                                a(href="/register")
+                                    i(class="fa fa-pencil-square")
+                                    | &nbsp Register
+                            li
+                                a(href="/login")
+                                    i(class="fa fa-sign-in")
+                                    | &nbsp Login
+
+        .container
+            .jumbotron
+                block content

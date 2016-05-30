@@ -1,0 +1,38 @@
+{
+  "name": "chat_system",
+  "version": "1.0.0",
+  "description": "Chat System written in Socket.io",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "cookie-parser": "^1.4.2",
+    "express-session": "^1.13.0",
+    "jade": "^1.11.0",
+    "express-sslify": "^1.0.1",
+    "connect-session-sequelize": "^3.0.0",
+    "multer": "^1.1.0",
+    "js-sha3": "^0.5.1",
+    "sequelize": "^3.23.2",
+    "moment": "^2.13.0",
+    "socket.io": "^1.4.6",
+    "sqlite3": "^3.1.4",
+    "nodemon": "^1.9.2",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amir734jj/Socket.io_chat_system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amir734jj/Socket.io_chat_system/issues"
+  },
+  "homepage": "https://github.com/amir734jj/Socket.io_chat_system#readme"
+}

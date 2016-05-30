@@ -1,0 +1,25 @@
+{
+  "name": "Socket.io_chat_system",
+  "homepage": "https://github.com/amir734jj/Socket.io_chat_system",
+  "authors": [
+    "Seyedamirhossein Hesamian <hesamian@uwm.edu>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "adapterjs": "^0.13.3",
+    "bootstrap": "~3.3.6",
+    "Jdenticon": "jdenticon#~1.3.2",
+    "jquery": "~2.2.4",
+    "socket.io": "~1.4.6",
+    "font-awesome": "fontawesome#~4.6.3"
+  }
+}
